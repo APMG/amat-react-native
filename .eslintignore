@@ -1,0 +1,9 @@
+webpack.configs.js
+next.config.js
+node_modules/**
+dist/**
+build/**
+lib/**
+coverage/**
+build/**
+src/**

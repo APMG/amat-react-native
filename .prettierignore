@@ -1,0 +1,7 @@
+# Location of CSS:
+styles/**/*
+src/shared/styles/**/*
+# Location of built files:
+dist/**/*
+build/**/*
+.next
