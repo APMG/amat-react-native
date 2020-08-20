@@ -1,0 +1,36 @@
+{
+  "name": "amat-react",
+  "version": "1.0.0-beta.0",
+  "description": "A library for turning Prosemirror docs into React HTML markup",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest --watch",
+    "test:ci": "jest",
+    "eslint": "eslint --ext .js,.ts,.jsx,.tsx .",
+    "eslint:fix": "eslint --ext .js,.ts,.jsx,.tsx . --fix",
+    "prettier": "prettier --check '**/**.tsx' && prettier --check '**/**.ts'",
+    "prettier:fix": "prettier --check '**/**.tsx' --write && prettier --check '**/**.ts' --write",
+    "clean": "rm -rf node_modules dist package-lock.json yarn.lock"
+  },
+  "keywords": [
+    "prosemirror",
+    "react",
+    "amat",
+    "typescript"
+  ],
+  "author": "Kim Thompson (kthompson@mpr.org)",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^26.4.1",
+    "react": "^16.13.1",
+    "rollup": "^2.26.4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-babel": "^5.2.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@types/react": "^16.9.46",
+    "rollup-plugin-typescript2": "^0.27.2",
+    "typescript": "^3.9.7"
+  }
+}
