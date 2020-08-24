@@ -10,21 +10,24 @@ var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 var NodeType = typeof Node;
 
+var determineNodeType = function (node) {
+    if (Array.isArray(node)) {
+        console.log('content', node);
+    }
+    else if (typeof node === 'object' && node !== null) {
+        console.log('attrs', node);
+    }
+    else {
+        console.log('type', node);
+    }
+};
 var process = function (content) {
     for (var i in content) {
         if (typeof content[i] === NodeType) {
             process(content[i]);
         }
         else {
-            if (Array.isArray(content[i])) {
-                console.log('content', content[i]);
-            }
-            else if (typeof content[i] === 'object' && content[i] !== null) {
-                console.log('attrs', content[i]);
-            }
-            else {
-                console.log('type', content[i]);
-            }
+            determineNodeType(content[i]);
         }
     }
 };
