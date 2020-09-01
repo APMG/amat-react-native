@@ -1,14 +1,14 @@
 import React, { FunctionComponent } from 'react';
 import { Text } from 'react-native';
 
+import { InnerProps } from '../types';
+
 interface Props {
-  inner: any;
+  inner: InnerProps;
 }
 
 const Code: FunctionComponent<Props> = ({ inner }) => {
-  console.log('code inner', inner);
-  // TODO: make it font family mono
-  return <Text style={{color: 'pink'}}>{inner}</Text>;
+  return <Text style={{color: 'magenta'}}>{inner}</Text>;
 };
 
 export default Code;

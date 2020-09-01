@@ -1,14 +1,23 @@
 import React, { FunctionComponent } from 'react';
-import { Text } from 'react-native';
+import { Alert, Linking, Text } from 'react-native';
+
+import { InnerProps } from '../types';
 
 interface Props {
-  inner: any;
+  inner: InnerProps;
+  href: string;
+  title: string;
 }
 
-const Link: FunctionComponent<Props> = ({ inner }) => {
-  console.log('link inner', inner);
-  // TODO: make it href
-  return <Text style={{color: 'blue'}}>{inner}</Text>;
+const Link: FunctionComponent<Props> = ({ inner, href, title }) => {
+  return (
+    <Text
+      style={{color: 'blue'}}
+      onPress={() => Linking.openURL(href)}
+    >
+      {inner}
+    </Text>
+  )
 };
 
 export default Link;

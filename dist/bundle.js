@@ -203,29 +203,38 @@ var ApmCorrection = function () {
 };
 
 var Link = function (_a) {
-    var inner = _a.inner;
-    console.log('link inner', inner);
-    // TODO: make it href
-    return React__default['default'].createElement(reactNative.Text, { style: { color: 'blue' } }, inner);
+    //const handleOnPress = async (url) => {
+    //const supported = await Linking.canOpenURL(url);
+    var inner = _a.inner, href = _a.href, title = _a.title;
+    //if (supported) {
+    //await Linking.openURL(url);
+    //} else {
+    //Alert.alert(`Don't know how to open this URL: ${url}`);
+    //}
+    //}
+    return (React__default['default'].createElement(reactNative.Text, { style: { color: 'blue' }, onPress: function () { return reactNative.Linking.openURL(href); } }, inner));
 };
+//return (
+//<TouchableOpacity
+//onPress={() => handleOnPress('https://www.google.com')}
+//>
+//<Text style={{color: 'blue'}}>{props.inner}</Text>
+//</TouchableOpacity>
+//)
 
 var Strong = function (_a) {
     var inner = _a.inner;
-    console.log('strong inner', inner);
     return React__default['default'].createElement(reactNative.Text, { style: { fontWeight: 'bold' } }, inner);
 };
 
 var Em = function (_a) {
     var inner = _a.inner;
-    console.log('em inner', inner);
     return React__default['default'].createElement(reactNative.Text, { style: { fontStyle: 'italic' } }, inner);
 };
 
 var Code = function (_a) {
     var inner = _a.inner;
-    console.log('code inner', inner);
-    // TODO: make it font family mono
-    return React__default['default'].createElement(reactNative.Text, { style: { color: 'pink' } }, inner);
+    return React__default['default'].createElement(reactNative.Text, { style: { color: 'magenta' } }, inner);
 };
 
 var DefaultComponents = function () {
