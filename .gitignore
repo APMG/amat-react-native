@@ -10,6 +10,7 @@ npm-debug.*
 *.orig.*
 web-build/
 coverage/
+dist/
 
 # Android Studio
 .idea/

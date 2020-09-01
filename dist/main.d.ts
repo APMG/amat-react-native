@@ -1,2 +1,3 @@
-import Body from './Body/Body';
-export { Body };
+import Traverse from './utils/Traverse';
+import Body from './Body';
+export { Traverse, Body };

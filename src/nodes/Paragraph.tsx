@@ -1,17 +1,8 @@
 import React, { FunctionComponent } from 'react';
+import { Text } from 'react-native';
 
-import { Node, TextNode } from '../types/prosemirror';
-
-export interface Props {
-  node: Node;
-}
-
-const Paragraph: FunctionComponent<Props> = ({ node }) => {
-  const paragraphs: JSX.Element[] = [];
-  node.content.forEach((childNode: TextNode, i: number) => {
-    paragraphs.push(<p key={i}>{childNode.text}</p>);
-  });
-  return <>{paragraphs}</>;
+const Paragraph: FunctionComponent = () => {
+  return <Text>Paragraph</Text>;
 };
 
 export default Paragraph;
