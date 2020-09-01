@@ -1,8 +1,16 @@
 import React, { FunctionComponent } from 'react';
 import { Text as TextNative } from 'react-native';
 
-const Text: FunctionComponent = () => {
-  return <TextNative>Text</TextNative>;
+import { TextNode } from '../types/prosemirror';
+import { EscapeSpecialCharacters } from '../utils/utils';
+
+interface Props {
+  nodeData: TextNode
+}
+
+const Text: FunctionComponent<Props> = ({ nodeData }) => {
+  const text = EscapeSpecialCharacters(nodeData['text']);
+  return <TextNative>{text}</TextNative>;
 };
 
 export default Text;

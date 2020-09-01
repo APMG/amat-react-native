@@ -11,4 +11,9 @@ export interface Node {
   text?: string;
 }
 
+export interface TextNode {
+  type: string;
+  text: string;
+}
+
 export const NodeType = typeof Node;

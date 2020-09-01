@@ -13,9 +13,9 @@ var Inner = function (child, props) {
     var Dispatcher = props.components[child.type];
     switch (child.type) {
         case 'apm_image':
-            return (React__default['default'].createElement(Dispatcher, { key: Math.random(), embedded: props.embedded, image: child.attrs, aspectRatio: child.attrs.preferred_aspect_ratio_slug, minimal: props.minimal, components: props.components, isAmp: props.isAmp }));
+            return (React__default['default'].createElement(Dispatcher, { key: Math.random(), embedded: props.embedded, image: child.attrs, aspectRatio: child.attrs.preferred_aspect_ratio_slug, components: props.components }));
         default:
-            return (React__default['default'].createElement(Dispatcher, { key: Math.random(), nodeData: child, embedded: props.embedded, minimal: props.minimal, components: props.components, isAmp: props.isAmp }));
+            return (React__default['default'].createElement(Dispatcher, { key: Math.random(), nodeData: child, embedded: props.embedded, components: props.components }));
     }
 };
 
@@ -48,7 +48,7 @@ var __assign = function() {
 var Mark = function (mark, InnerComponent, attrs, props) {
     if (attrs === void 0) { attrs = {}; }
     var Dispatcher = props.components[mark.type];
-    return React__default['default'].createElement(Dispatcher, __assign({ key: Date.now(), inner: InnerComponent }, attrs));
+    return React__default['default'].createElement(Dispatcher, __assign({ key: Math.random(), inner: InnerComponent }, attrs));
 };
 
 var NativeTraverse = function (props) {
@@ -86,8 +86,8 @@ var Break = function () {
     return React__default['default'].createElement(reactNative.Text, null, "Break");
 };
 
-var Paragraph = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "Paragraph");
+var Paragraph = function (props) {
+    return React__default['default'].createElement(reactNative.Text, null, NativeTraverse(props));
 };
 
 var Heading = function () {
@@ -98,8 +98,20 @@ var HorizontalRule = function () {
     return React__default['default'].createElement(reactNative.Text, null, "HorizontalRule");
 };
 
-var Text = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "Text");
+function EscapeSpecialCharacters(text) {
+    // React will automatically escape ampersands and less than and greater than signs  but not quotes and double quotes.
+    // See https://shripadk.github.io/react/docs/jsx-gotchas.html which for some reason is no longer on the main react site
+    // # https://github.com/facebook/react/issues/8998
+    var retText = text
+        .replace(/'/g, String.fromCharCode(39))
+        .replace(/"/g, String.fromCharCode(34));
+    return retText;
+}
+
+var Text = function (_a) {
+    var nodeData = _a.nodeData;
+    var text = EscapeSpecialCharacters(nodeData['text']);
+    return React__default['default'].createElement(reactNative.Text, null, text);
 };
 
 var CustomHtml = function () {
@@ -190,20 +202,30 @@ var ApmCorrection = function () {
     return React__default['default'].createElement(reactNative.Text, null, "ApmCorrection");
 };
 
-var Link = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "Link");
+var Link = function (_a) {
+    var inner = _a.inner;
+    console.log('link inner', inner);
+    // TODO: make it href
+    return React__default['default'].createElement(reactNative.Text, { style: { color: 'blue' } }, inner);
 };
 
-var Strong = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "Strong");
+var Strong = function (_a) {
+    var inner = _a.inner;
+    console.log('strong inner', inner);
+    return React__default['default'].createElement(reactNative.Text, { style: { fontWeight: 'bold' } }, inner);
 };
 
-var Em = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "Em");
+var Em = function (_a) {
+    var inner = _a.inner;
+    console.log('em inner', inner);
+    return React__default['default'].createElement(reactNative.Text, { style: { fontStyle: 'italic' } }, inner);
 };
 
-var Code = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "Code");
+var Code = function (_a) {
+    var inner = _a.inner;
+    console.log('code inner', inner);
+    // TODO: make it font family mono
+    return React__default['default'].createElement(reactNative.Text, { style: { color: 'pink' } }, inner);
 };
 
 var DefaultComponents = function () {

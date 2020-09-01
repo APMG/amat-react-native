@@ -10,9 +10,7 @@ const Inner = (child, props) => {
           embedded={props.embedded}
           image={child.attrs}
           aspectRatio={child.attrs.preferred_aspect_ratio_slug}
-          minimal={props.minimal}
           components={props.components}
-          isAmp={props.isAmp}
         />
       );
     default:
@@ -21,9 +19,7 @@ const Inner = (child, props) => {
           key={Math.random()}
           nodeData={child}
           embedded={props.embedded}
-          minimal={props.minimal}
           components={props.components}
-          isAmp={props.isAmp}
         />
       );
   }

@@ -10,3 +10,6 @@ export interface EmbeddedAssets {
     images: object;
     oembeds: object;
 }
+export interface InnerProps {
+    key: any;
+}

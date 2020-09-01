@@ -8,4 +8,8 @@ export interface Node {
     content?: Node[];
     text?: string;
 }
+export interface TextNode {
+    type: string;
+    text: string;
+}
 export declare const NodeType: "string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function";

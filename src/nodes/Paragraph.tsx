@@ -1,8 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { Text } from 'react-native';
 
-const Paragraph: FunctionComponent = () => {
-  return <Text>Paragraph</Text>;
+import Traverse from '../utils/Traverse';
+
+const Paragraph: FunctionComponent = (props) => {
+  return <Text>{Traverse(props)}</Text>;
 };
 
 export default Paragraph;
