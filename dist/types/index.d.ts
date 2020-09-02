@@ -1,3 +1,4 @@
+import { FunctionComponent } from 'react';
 export declare enum BodyType {
     Web = 0,
     AMP = 1,
@@ -10,6 +11,9 @@ export interface EmbeddedAssets {
     images: object;
     oembeds: object;
 }
-export interface InnerProps {
-    key: any;
+export interface Inner {
+    key: string;
+    props?: object;
+    ref?: any | null;
+    type?: FunctionComponent;
 }

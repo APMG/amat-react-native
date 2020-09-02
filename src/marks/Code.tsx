@@ -1,24 +1,22 @@
 import React, { FunctionComponent } from 'react';
 import { Platform, StyleSheet, Text } from 'react-native';
 
-import { InnerProps } from '../types';
+import { Inner } from '../types';
 
 interface Props {
-  inner: InnerProps;
-  styles: object;
+  inner: Inner;
 }
 
 const Code: FunctionComponent<Props> = ({ inner }) => {
-  // Cannot add fontFamily through a rollup build process. If you want something other than this, you'll have to write an override component.
   return (
-    <Text data-mark="code" style={testStyles.test}>
+    <Text data-mark="code" style={styles.code}>
       {inner}
     </Text>
   );
 };
 
-const testStyles = StyleSheet.create({
-  test: {
+const styles = StyleSheet.create({
+  code: {
     color: 'magenta',
     ...Platform.select({
       ios: {

@@ -1,8 +1,21 @@
 import React, { FunctionComponent } from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
-const Aside: FunctionComponent = () => {
-  return <Text>Aside</Text>;
+import Traverse from '../utils/Traverse';
+
+const Aside: FunctionComponent = (props) => {
+  return <Text style={styles.aside}>{Traverse(props)}</Text>;
 };
+
+const styles = StyleSheet.create({
+  aside: {
+    fontSize: 14,
+    fontStyle: 'italic',
+    borderWidth: 1,
+    borderColor: 'lightgrey',
+    padding: 5,
+    margin: 5
+  }
+});
 
 export default Aside;

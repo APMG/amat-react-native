@@ -1,3 +1,6 @@
+import { FunctionComponent } from 'react';
+import { Node } from './prosemirror';
+
 export enum BodyType {
   Web,
   AMP,
@@ -12,6 +15,9 @@ export interface EmbeddedAssets {
   oembeds: object;
 }
 
-export interface InnerProps {
-  key: any;
+export interface Inner {
+  key: string;
+  props?: object;
+  ref?: any | null;
+  type?: FunctionComponent;
 }

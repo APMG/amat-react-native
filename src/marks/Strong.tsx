@@ -1,14 +1,20 @@
 import React, { FunctionComponent } from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
-import { InnerProps } from '../types';
+import { Inner } from '../types';
 
 interface Props {
-  inner: InnerProps;
+  inner: Inner;
 }
 
 const Strong: FunctionComponent<Props> = ({ inner }) => {
-  return <Text data-mark="strong" style={{fontWeight: 'bold'}}>{inner}</Text>;
+  return <Text data-mark="strong" style={styles.strong}>{inner}</Text>;
 };
+
+const styles = StyleSheet.create({
+  strong: {
+    fontWeight: 'bold'
+  }
+});
 
 export default Strong;

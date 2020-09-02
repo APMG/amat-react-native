@@ -1,8 +1,17 @@
 import React, { FunctionComponent } from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 const HorizontalRule: FunctionComponent = () => {
-  return <Text>HorizontalRule</Text>;
+  return <View style={styles.horizontalRule}></View>;
 };
+
+const styles = StyleSheet.create({
+  horizontalRule: {
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1,
+    paddingHorizontal: 3,
+    alignSelf: 'stretch'
+  }
+});
 
 export default HorizontalRule;

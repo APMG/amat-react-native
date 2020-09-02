@@ -1,24 +1,30 @@
 import React, { FunctionComponent } from 'react';
-import { Alert, Linking, Text } from 'react-native';
+import { Linking, StyleSheet, Text } from 'react-native';
 
-import { InnerProps } from '../types';
+import { Inner } from '../types';
 
 interface Props {
-  inner: InnerProps;
+  inner: Inner;
   href: string;
   title: string;
 }
 
-const Link: FunctionComponent<Props> = ({ inner, href, title }) => {
+const Link: FunctionComponent<Props> = ({ inner, href }) => {
   return (
     <Text
       data-mark="link"
-      style={{color: 'blue'}}
+      style={styles.link}
       onPress={() => Linking.openURL(href)}
     >
       {inner}
     </Text>
   )
 };
+
+const styles = StyleSheet.create({
+  link: {
+    color: 'blue'
+  }
+});
 
 export default Link;

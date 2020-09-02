@@ -83,20 +83,71 @@ var Doc = function (props) {
 };
 
 var Break = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "Break");
+    return React__default['default'].createElement(reactNative.Text, null, '\n');
 };
 
 var Paragraph = function (props) {
-    return React__default['default'].createElement(reactNative.Text, null, NativeTraverse(props));
+    return React__default['default'].createElement(reactNative.Text, { style: styles.paragraph }, NativeTraverse(props));
 };
+var styles = reactNative.StyleSheet.create({
+    paragraph: {
+        fontSize: 14,
+        marginVertical: 5,
+        marginHorizontal: 10
+    }
+});
 
-var Heading = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "Heading");
+var Heading = function (props) {
+    var id = findText(props);
+    var level = "h" + props.nodeData.attrs.level;
+    return React__default['default'].createElement(reactNative.Text, { "data-id": id, style: [styles$1.heading, styles$1[level]] }, NativeTraverse(props));
 };
+var findText = function (props) {
+    if (props.nodeData.attrs.anchor)
+        return props.nodeData.attrs.anchor;
+    if (!props.nodeData.content)
+        return null;
+    var txtEle = props.nodeData.content.find(function (ele) { return ele.type === 'text'; });
+    var txt = txtEle.text.replace(/\s/g, '_').replace(/['"]/g, '');
+    return "h" + props.nodeData.attrs.level + "_" + txt.toLowerCase();
+};
+var styles$1 = reactNative.StyleSheet.create({
+    heading: {
+        fontWeight: 'bold',
+        marginVertical: 5,
+        marginHorizontal: 10,
+    },
+    h1: {
+        fontSize: 32
+    },
+    h2: {
+        fontSize: 28
+    },
+    h3: {
+        fontSize: 24
+    },
+    h4: {
+        fontSize: 22
+    },
+    h5: {
+        fontSize: 18
+    },
+    h6: {
+        fontSize: 16
+    }
+});
 
 var HorizontalRule = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "HorizontalRule");
+    return React__default['default'].createElement(reactNative.View, { style: styles$2.horizontalRule });
 };
+var styles$2 = reactNative.StyleSheet.create({
+    horizontalRule: {
+        borderBottomColor: 'grey',
+        borderBottomWidth: 1,
+        paddingHorizontal: 3,
+        alignSelf: 'stretch'
+    }
+});
 
 function EscapeSpecialCharacters(text) {
     // React will automatically escape ampersands and less than and greater than signs  but not quotes and double quotes.
@@ -118,9 +169,19 @@ var CustomHtml = function () {
     return React__default['default'].createElement(reactNative.Text, null, "CustomHtml");
 };
 
-var Blockquote = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "Blockquote");
+var Blockquote = function (props) {
+    return React__default['default'].createElement(reactNative.Text, { style: styles$3.blockquote }, NativeTraverse(props));
 };
+var styles$3 = reactNative.StyleSheet.create({
+    blockquote: {
+        fontSize: 14,
+        backgroundColor: 'gainsboro',
+        fontStyle: 'italic',
+        padding: 5,
+        margin: 5,
+        marginLeft: 15
+    }
+});
 
 var UnorderedList = function () {
     return React__default['default'].createElement(reactNative.Text, null, "UnorderedList");
@@ -178,13 +239,36 @@ var ApmImage = function () {
     return React__default['default'].createElement(reactNative.Text, null, "ApmImage");
 };
 
-var ApmVerse = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "ApmVerse");
+var ApmVerse = function (props) {
+    return React__default['default'].createElement(reactNative.Text, { style: styles$4.verse }, NativeTraverse(props));
 };
+var styles$4 = reactNative.StyleSheet.create({
+    verse: __assign({ color: 'indigo', marginVertical: 5, marginHorizontal: 10 }, reactNative.Platform.select({
+        ios: {
+            fontFamily: 'Georgia'
+        },
+        android: {
+            fontFamily: 'notoserif'
+        },
+        default: {
+            fontFamily: 'serif'
+        }
+    }))
+});
 
-var Aside = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "Aside");
+var Aside = function (props) {
+    return React__default['default'].createElement(reactNative.Text, { style: styles$5.aside }, NativeTraverse(props));
 };
+var styles$5 = reactNative.StyleSheet.create({
+    aside: {
+        fontSize: 14,
+        fontStyle: 'italic',
+        borderWidth: 1,
+        borderColor: 'lightgrey',
+        padding: 5,
+        margin: 5
+    }
+});
 
 var ApmFootnoteList = function () {
     return React__default['default'].createElement(reactNative.Text, null, "ApmFootnoteList");
@@ -198,32 +282,66 @@ var ApmFootnoteListItem = function () {
     return React__default['default'].createElement(reactNative.Text, null, "ApmFootnoteListItem");
 };
 
-var ApmCorrection = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "ApmCorrection");
+var ApmCorrection = function (props) {
+    var timestamp = props.nodeData.attrs.timestamp;
+    return (React__default['default'].createElement(reactNative.View, { style: styles$6.correction },
+        React__default['default'].createElement(reactNative.Text, { style: styles$6.title }, "Correction"),
+        React__default['default'].createElement(reactNative.Text, { style: styles$6.timestamp }, timestamp),
+        React__default['default'].createElement(reactNative.Text, null, NativeTraverse(props))));
 };
+var styles$6 = reactNative.StyleSheet.create({
+    correction: {
+        backgroundColor: 'gainsboro',
+        padding: 5,
+        margin: 5,
+        marginLeft: 15
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    timestamp: {
+        fontSize: 10,
+        fontStyle: 'italic'
+    }
+});
 
 var Link = function (_a) {
-    var inner = _a.inner, href = _a.href, title = _a.title;
-    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "link", style: { color: 'blue' }, onPress: function () { return reactNative.Linking.openURL(href); } }, inner));
+    var inner = _a.inner, href = _a.href;
+    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "link", style: styles$7.link, onPress: function () { return reactNative.Linking.openURL(href); } }, inner));
 };
+var styles$7 = reactNative.StyleSheet.create({
+    link: {
+        color: 'blue'
+    }
+});
 
 var Strong = function (_a) {
     var inner = _a.inner;
-    return React__default['default'].createElement(reactNative.Text, { "data-mark": "strong", style: { fontWeight: 'bold' } }, inner);
+    return React__default['default'].createElement(reactNative.Text, { "data-mark": "strong", style: styles$8.strong }, inner);
 };
+var styles$8 = reactNative.StyleSheet.create({
+    strong: {
+        fontWeight: 'bold'
+    }
+});
 
 var Em = function (_a) {
     var inner = _a.inner;
-    return React__default['default'].createElement(reactNative.Text, { "data-mark": "em", style: { fontStyle: 'italic' } }, inner);
+    return React__default['default'].createElement(reactNative.Text, { "data-mark": "em", style: styles$9.em }, inner);
 };
+var styles$9 = reactNative.StyleSheet.create({
+    em: {
+        fontStyle: 'italic'
+    }
+});
 
 var Code = function (_a) {
     var inner = _a.inner;
-    // Cannot add fontFamily through a rollup build process. If you want something other than this, you'll have to write an override component.
-    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "code", style: testStyles.test }, inner));
+    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "code", style: styles$a.code }, inner));
 };
-var testStyles = reactNative.StyleSheet.create({
-    test: __assign({ color: 'magenta' }, reactNative.Platform.select({
+var styles$a = reactNative.StyleSheet.create({
+    code: __assign({ color: 'magenta' }, reactNative.Platform.select({
         ios: {
             fontFamily: 'Menlo'
         },

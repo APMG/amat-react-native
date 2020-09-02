@@ -1,8 +1,21 @@
 import React, { FunctionComponent } from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
-const Blockquote: FunctionComponent = () => {
-  return <Text>Blockquote</Text>;
+import Traverse from '../utils/Traverse';
+
+const Blockquote: FunctionComponent = (props) => {
+  return <Text style={styles.blockquote}>{Traverse(props)}</Text>;
 };
+
+const styles = StyleSheet.create({
+  blockquote: {
+    fontSize: 14,
+    backgroundColor: 'gainsboro',
+    fontStyle: 'italic',
+    padding: 5,
+    margin: 5,
+    marginLeft: 15
+  }
+});
 
 export default Blockquote;

@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 const Break: FunctionComponent = () => {
-  return <Text>Break</Text>;
+  return <Text>{'\n'}</Text>;
 };
 
 export default Break;

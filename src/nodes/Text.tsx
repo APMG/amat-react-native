@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Text as TextNative } from 'react-native';
+import { StyleSheet, Text as TextNative } from 'react-native';
 
 import { TextNode } from '../types/prosemirror';
 import { EscapeSpecialCharacters } from '../utils/utils';
