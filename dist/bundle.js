@@ -218,14 +218,22 @@ var Em = function (_a) {
 };
 
 var Code = function (_a) {
-    var inner = _a.inner, styles = _a.styles;
-    // Cannot add fontFamily through a rollup build process. Will try to feed in via the parent app
-    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "code", style: [testStyles.test, styles] }, inner));
+    var inner = _a.inner;
+    // Cannot add fontFamily through a rollup build process. If you want something other than this, you'll have to write an override component.
+    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "code", style: testStyles.test }, inner));
 };
 var testStyles = reactNative.StyleSheet.create({
-    test: {
-        color: 'magenta'
-    }
+    test: __assign({ color: 'magenta' }, reactNative.Platform.select({
+        ios: {
+            fontFamily: 'Menlo'
+        },
+        android: {
+            fontFamily: 'monospace'
+        },
+        default: {
+            fontFamily: 'monospace'
+        }
+    }))
 });
 
 var DefaultComponents = function () {
