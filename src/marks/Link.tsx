@@ -18,7 +18,7 @@ const Link: FunctionComponent<Props> = ({ inner, href }) => {
     >
       {inner}
     </Text>
-  )
+  );
 };
 
 const styles = StyleSheet.create({

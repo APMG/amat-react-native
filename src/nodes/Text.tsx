@@ -5,7 +5,7 @@ import { TextNode } from '../types/prosemirror';
 import { EscapeSpecialCharacters } from '../utils/utils';
 
 interface Props {
-  nodeData: TextNode
+  nodeData: TextNode;
 }
 
 const Text: FunctionComponent<Props> = ({ nodeData }) => {

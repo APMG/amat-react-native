@@ -8,7 +8,11 @@ interface Props {
 }
 
 const Em: FunctionComponent<Props> = ({ inner }) => {
-  return <Text data-mark="em" style={styles.em}>{inner}</Text>;
+  return (
+    <Text data-mark="em" style={styles.em}>
+      {inner}
+    </Text>
+  );
 };
 
 const styles = StyleSheet.create({

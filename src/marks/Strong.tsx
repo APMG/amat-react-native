@@ -8,7 +8,11 @@ interface Props {
 }
 
 const Strong: FunctionComponent<Props> = ({ inner }) => {
-  return <Text data-mark="strong" style={styles.strong}>{inner}</Text>;
+  return (
+    <Text data-mark="strong" style={styles.strong}>
+      {inner}
+    </Text>
+  );
 };
 
 const styles = StyleSheet.create({
