@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Em: FunctionComponent<Props> = ({ inner }) => {
-  return <Text style={{fontStyle: 'italic'}}>{inner}</Text>;
+  return <Text data-mark="em" style={{fontStyle: 'italic'}}>{inner}</Text>;
 };
 
 export default Em;

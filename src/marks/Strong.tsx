@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Strong: FunctionComponent<Props> = ({ inner }) => {
-  return <Text style={{fontWeight: 'bold'}}>{inner}</Text>;
+  return <Text data-mark="strong" style={{fontWeight: 'bold'}}>{inner}</Text>;
 };
 
 export default Strong;

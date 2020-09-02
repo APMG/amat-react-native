@@ -203,39 +203,30 @@ var ApmCorrection = function () {
 };
 
 var Link = function (_a) {
-    //const handleOnPress = async (url) => {
-    //const supported = await Linking.canOpenURL(url);
     var inner = _a.inner, href = _a.href, title = _a.title;
-    //if (supported) {
-    //await Linking.openURL(url);
-    //} else {
-    //Alert.alert(`Don't know how to open this URL: ${url}`);
-    //}
-    //}
-    return (React__default['default'].createElement(reactNative.Text, { style: { color: 'blue' }, onPress: function () { return reactNative.Linking.openURL(href); } }, inner));
+    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "link", style: { color: 'blue' }, onPress: function () { return reactNative.Linking.openURL(href); } }, inner));
 };
-//return (
-//<TouchableOpacity
-//onPress={() => handleOnPress('https://www.google.com')}
-//>
-//<Text style={{color: 'blue'}}>{props.inner}</Text>
-//</TouchableOpacity>
-//)
 
 var Strong = function (_a) {
     var inner = _a.inner;
-    return React__default['default'].createElement(reactNative.Text, { style: { fontWeight: 'bold' } }, inner);
+    return React__default['default'].createElement(reactNative.Text, { "data-mark": "strong", style: { fontWeight: 'bold' } }, inner);
 };
 
 var Em = function (_a) {
     var inner = _a.inner;
-    return React__default['default'].createElement(reactNative.Text, { style: { fontStyle: 'italic' } }, inner);
+    return React__default['default'].createElement(reactNative.Text, { "data-mark": "em", style: { fontStyle: 'italic' } }, inner);
 };
 
 var Code = function (_a) {
-    var inner = _a.inner;
-    return React__default['default'].createElement(reactNative.Text, { style: { color: 'magenta' } }, inner);
+    var inner = _a.inner, styles = _a.styles;
+    // Cannot add fontFamily through a rollup build process. Will try to feed in via the parent app
+    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "code", style: [testStyles.test, styles] }, inner));
 };
+var testStyles = reactNative.StyleSheet.create({
+    test: {
+        color: 'magenta'
+    }
+});
 
 var DefaultComponents = function () {
     return {

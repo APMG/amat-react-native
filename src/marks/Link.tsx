@@ -12,6 +12,7 @@ interface Props {
 const Link: FunctionComponent<Props> = ({ inner, href, title }) => {
   return (
     <Text
+      data-mark="link"
       style={{color: 'blue'}}
       onPress={() => Linking.openURL(href)}
     >
