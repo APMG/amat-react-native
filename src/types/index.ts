@@ -20,4 +20,5 @@ export interface Inner {
   props?: object;
   ref?: any | null;
   type?: FunctionComponent;
+  components?: any[];
 }

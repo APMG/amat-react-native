@@ -21,10 +21,7 @@ const UnorderedList: FunctionComponent<Props> = (props) => {
           content[i].forEach((node) => {
             node.content.forEach((textNode) => {
               listItems.push(
-                <Text
-                  key={Math.random()}
-                  style={styles.text}
-                >{` • ${textNode.text}\n`}</Text>
+                <Text key={Math.random()}>{` • ${textNode.text}\n`}</Text>
               );
             });
           });
@@ -45,9 +42,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginVertical: 5,
     marginHorizontal: 10
-  },
-  text: {
-    marginVertical: 2
   }
 });
 

@@ -13,7 +13,18 @@ export interface TextNode {
     text: string;
 }
 interface Attrs {
-    level: string;
+    level?: string;
+    custom_class?: string;
+    number?: string;
+    anchors?: Anchor[];
+    prefix?: string;
+    title?: string;
+    url?: string;
+}
+interface Anchor {
+    anchor?: string;
+    linkText?: string;
+    level?: number;
 }
 export declare const NodeType: "string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function";
 export {};

@@ -1,8 +1,29 @@
 import React, { FunctionComponent } from 'react';
-import { Text } from 'react-native';
+import { Linking, StyleSheet, Text, View } from 'react-native';
+import Break from './Break';
 
-const ApmRelatedLinkListItem: FunctionComponent = () => {
-  return <Text>ApmRelatedLinkListItem</Text>;
+import { Node } from '../types/prosemirror';
+
+interface Props {
+  nodeData: Node
+}
+
+const ApmRelatedLinkListItem: FunctionComponent<Props> = (props) => {
+  const { prefix, title, url } = props.nodeData.attrs;
+
+  return (
+    <Text>
+      <Text>{`${prefix} | `}</Text>
+      <Text style={styles.link} onPress={() => Linking.openURL(url)}>{title}</Text>
+    </Text>
+  );
 };
+
+const styles = StyleSheet.create({
+  link: {
+    color: 'blue',
+    fontWeight: 'bold'
+  }
+});
 
 export default ApmRelatedLinkListItem;
