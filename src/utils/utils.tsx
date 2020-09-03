@@ -12,3 +12,13 @@ export function EscapeSpecialCharacters(text) {
     .replace(/"/g, String.fromCharCode(34));
   return retText;
 }
+
+export const determineNodeType = (node: Node) => {
+  if (Array.isArray(node)) {
+    return 'content';
+  } else if (typeof node === 'object' && node !== null) {
+    return 'attrs';
+  } else {
+    return 'type';
+  }
+};

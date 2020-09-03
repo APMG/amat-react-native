@@ -100,7 +100,7 @@ var styles = reactNative.StyleSheet.create({
 var Heading = function (props) {
     var id = findText(props);
     var level = "h" + props.nodeData.attrs.level;
-    return React__default['default'].createElement(reactNative.Text, { "data-id": id, style: [styles$1.heading, styles$1[level]] }, NativeTraverse(props));
+    return (React__default['default'].createElement(reactNative.Text, { "data-id": id, style: [styles$1.heading, styles$1[level]] }, NativeTraverse(props)));
 };
 var findText = function (props) {
     if (props.nodeData.attrs.anchor)
@@ -115,7 +115,7 @@ var styles$1 = reactNative.StyleSheet.create({
     heading: {
         fontWeight: 'bold',
         marginVertical: 5,
-        marginHorizontal: 10,
+        marginHorizontal: 10
     },
     h1: {
         fontSize: 32
@@ -158,6 +158,17 @@ function EscapeSpecialCharacters(text) {
         .replace(/"/g, String.fromCharCode(34));
     return retText;
 }
+var determineNodeType = function (node) {
+    if (Array.isArray(node)) {
+        return 'content';
+    }
+    else if (typeof node === 'object' && node !== null) {
+        return 'attrs';
+    }
+    else {
+        return 'type';
+    }
+};
 
 var Text = function (_a) {
     var nodeData = _a.nodeData;
@@ -183,17 +194,93 @@ var styles$3 = reactNative.StyleSheet.create({
     }
 });
 
-var UnorderedList = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "UnorderedList");
-};
+var NodeType = typeof Node;
 
-var OrderedList = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "OrderedList");
+var UnorderedList = function (props) {
+    var listItems = [];
+    var process = function (content) {
+        for (var i in content) {
+            if (typeof content[i] === NodeType) {
+                process(content[i]);
+            }
+            else {
+                var type = determineNodeType(content[i]);
+                if (type === 'content') {
+                    content[i].forEach(function (node) {
+                        node.content.forEach(function (textNode) {
+                            listItems.push(React__default['default'].createElement(reactNative.Text, { key: Math.random(), style: styles$4.text }, " \u2022 " + textNode.text + "\n"));
+                        });
+                    });
+                }
+            }
+        }
+    };
+    props.nodeData.content.forEach(function (node, i) {
+        process(node);
+    });
+    return (React__default['default'].createElement(reactNative.View, { style: styles$4.list }, listItems));
 };
+var styles$4 = reactNative.StyleSheet.create({
+    list: {
+        fontSize: 14,
+        marginVertical: 5,
+        marginHorizontal: 10
+    },
+    text: {
+        marginVertical: 2
+    }
+});
 
-var ListItem = function () {
-    return React__default['default'].createElement(reactNative.Text, null, "ListItem");
+var OrderedList = function (props) {
+    var listItems = [];
+    var process = function (content, index) {
+        for (var i in content) {
+            if (typeof content[i] === NodeType) {
+                process(content[i], index);
+            }
+            else {
+                var type = determineNodeType(content[i]);
+                if (type === 'content') {
+                    content[i].forEach(function (node) {
+                        node.content.forEach(function (textNode) {
+                            listItems.push(React__default['default'].createElement(reactNative.Text, { key: Math.random(), style: styles$5.text }, " " + index + ". " + textNode.text + "\n"));
+                        });
+                    });
+                }
+            }
+        }
+    };
+    props.nodeData.content.forEach(function (node, i) {
+        process(node, i);
+    });
+    return (React__default['default'].createElement(reactNative.View, { style: styles$5.list }, listItems));
 };
+var styles$5 = reactNative.StyleSheet.create({
+    list: {
+        fontSize: 14,
+        marginVertical: 5,
+        marginHorizontal: 10
+    },
+    text: {
+        marginVertical: 2
+    }
+});
+
+// This is here to avoid crashes, but information about which markers to use cannot be found at this level. As such, OrderedList and UnorderedList will not be calling Traverse, and therefore should not run into this instance.
+var ListItem = function (props) {
+    return (React__default['default'].createElement(reactNative.View, { style: styles$6.list },
+        React__default['default'].createElement(reactNative.Text, { style: styles$6.text }, "\u2022 " + NativeTraverse(props) + "\n")));
+};
+var styles$6 = reactNative.StyleSheet.create({
+    list: {
+        fontSize: 14,
+        marginVertical: 5,
+        marginHorizontal: 10
+    },
+    text: {
+        marginVertical: 2
+    }
+});
 
 var ApmOembed = function () {
     return React__default['default'].createElement(reactNative.Text, null, "ApmOembed");
@@ -240,9 +327,9 @@ var ApmImage = function () {
 };
 
 var ApmVerse = function (props) {
-    return React__default['default'].createElement(reactNative.Text, { style: styles$4.verse }, NativeTraverse(props));
+    return React__default['default'].createElement(reactNative.Text, { style: styles$7.verse }, NativeTraverse(props));
 };
-var styles$4 = reactNative.StyleSheet.create({
+var styles$7 = reactNative.StyleSheet.create({
     verse: __assign({ color: 'indigo', marginVertical: 5, marginHorizontal: 10 }, reactNative.Platform.select({
         ios: {
             fontFamily: 'Georgia'
@@ -257,9 +344,9 @@ var styles$4 = reactNative.StyleSheet.create({
 });
 
 var Aside = function (props) {
-    return React__default['default'].createElement(reactNative.Text, { style: styles$5.aside }, NativeTraverse(props));
+    return React__default['default'].createElement(reactNative.Text, { style: styles$8.aside }, NativeTraverse(props));
 };
-var styles$5 = reactNative.StyleSheet.create({
+var styles$8 = reactNative.StyleSheet.create({
     aside: {
         fontSize: 14,
         fontStyle: 'italic',
@@ -284,12 +371,12 @@ var ApmFootnoteListItem = function () {
 
 var ApmCorrection = function (props) {
     var timestamp = props.nodeData.attrs.timestamp;
-    return (React__default['default'].createElement(reactNative.View, { style: styles$6.correction },
-        React__default['default'].createElement(reactNative.Text, { style: styles$6.title }, "Correction"),
-        React__default['default'].createElement(reactNative.Text, { style: styles$6.timestamp }, timestamp),
+    return (React__default['default'].createElement(reactNative.View, { style: styles$9.correction },
+        React__default['default'].createElement(reactNative.Text, { style: styles$9.title }, "Correction"),
+        React__default['default'].createElement(reactNative.Text, { style: styles$9.timestamp }, timestamp),
         React__default['default'].createElement(reactNative.Text, null, NativeTraverse(props))));
 };
-var styles$6 = reactNative.StyleSheet.create({
+var styles$9 = reactNative.StyleSheet.create({
     correction: {
         backgroundColor: 'gainsboro',
         padding: 5,
@@ -308,9 +395,9 @@ var styles$6 = reactNative.StyleSheet.create({
 
 var Link = function (_a) {
     var inner = _a.inner, href = _a.href;
-    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "link", style: styles$7.link, onPress: function () { return reactNative.Linking.openURL(href); } }, inner));
+    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "link", style: styles$a.link, onPress: function () { return reactNative.Linking.openURL(href); } }, inner));
 };
-var styles$7 = reactNative.StyleSheet.create({
+var styles$a = reactNative.StyleSheet.create({
     link: {
         color: 'blue'
     }
@@ -318,9 +405,9 @@ var styles$7 = reactNative.StyleSheet.create({
 
 var Strong = function (_a) {
     var inner = _a.inner;
-    return React__default['default'].createElement(reactNative.Text, { "data-mark": "strong", style: styles$8.strong }, inner);
+    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "strong", style: styles$b.strong }, inner));
 };
-var styles$8 = reactNative.StyleSheet.create({
+var styles$b = reactNative.StyleSheet.create({
     strong: {
         fontWeight: 'bold'
     }
@@ -328,9 +415,9 @@ var styles$8 = reactNative.StyleSheet.create({
 
 var Em = function (_a) {
     var inner = _a.inner;
-    return React__default['default'].createElement(reactNative.Text, { "data-mark": "em", style: styles$9.em }, inner);
+    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "em", style: styles$c.em }, inner));
 };
-var styles$9 = reactNative.StyleSheet.create({
+var styles$c = reactNative.StyleSheet.create({
     em: {
         fontStyle: 'italic'
     }
@@ -338,9 +425,9 @@ var styles$9 = reactNative.StyleSheet.create({
 
 var Code = function (_a) {
     var inner = _a.inner;
-    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "code", style: styles$a.code }, inner));
+    return (React__default['default'].createElement(reactNative.Text, { "data-mark": "code", style: styles$d.code }, inner));
 };
-var styles$a = reactNative.StyleSheet.create({
+var styles$d = reactNative.StyleSheet.create({
     code: __assign({ color: 'magenta' }, reactNative.Platform.select({
         ios: {
             fontFamily: 'Menlo'

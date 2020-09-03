@@ -6,7 +6,6 @@ export interface Doc {
 export interface Node {
   type: string;
   attrs?: Attrs;
-  //content?: Node | Node[]; // woohoo recursion, it's like I'm back in CSCI 1901
   content?: Node[]; // woohoo recursion, it's like I'm back in CSCI 1901
   text?: string;
 }

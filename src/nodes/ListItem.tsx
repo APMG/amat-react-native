@@ -1,8 +1,26 @@
 import React, { FunctionComponent } from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const ListItem: FunctionComponent = () => {
-  return <Text>ListItem</Text>;
+import Traverse from '../utils/Traverse';
+
+// This is here to avoid crashes, but information about which markers to use cannot be found at this level. As such, OrderedList and UnorderedList will not be calling Traverse, and therefore should not run into this instance.
+const ListItem: FunctionComponent = (props) => {
+  return (
+    <View style={styles.list}>
+      <Text style={styles.text}>{`• ${Traverse(props)}\n`}</Text>
+    </View>
+  );
 };
+
+const styles = StyleSheet.create({
+  list: {
+    fontSize: 14,
+    marginVertical: 5,
+    marginHorizontal: 10
+  },
+  text: {
+    marginVertical: 2
+  }
+});
 
 export default ListItem;
