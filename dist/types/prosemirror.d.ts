@@ -20,6 +20,7 @@ interface Attrs {
     prefix?: string;
     title?: string;
     url?: string;
+    preferred_aspect_ratio_slug?: string;
 }
 interface Anchor {
     anchor?: string;

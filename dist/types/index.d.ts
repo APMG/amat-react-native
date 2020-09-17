@@ -1,4 +1,5 @@
-import { FunctionComponent } from 'react';
+import { ComponentType } from 'react';
+import { Node } from './prosemirror';
 export declare enum BodyType {
     Web = 0,
     AMP = 1,
@@ -12,9 +13,23 @@ export interface EmbeddedAssets {
     oembeds: object;
 }
 export interface Inner {
-    key: string;
+    key: string | number;
     props?: object;
     ref?: any | null;
-    type?: FunctionComponent;
-    components?: any[];
+    type?: ComponentType;
+    components?: Components;
+}
+export interface Components {
+    [key: string]: ComponentType<ApmComponentProps | MarkProps>;
+}
+export interface ApmComponentProps {
+    key?: string | number;
+    nodeData: Node;
+    embedded: EmbeddedAssets;
+    components: Components;
+}
+export interface MarkProps {
+    inner: Inner;
+    href?: string;
+    title?: string;
 }
