@@ -3,12 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Node, NodeType } from '../types/prosemirror';
 import { determineNodeType } from '../utils/utils';
+import { ApmComponentProps } from '../types';
 
-interface Props {
-  nodeData: Node;
-}
-
-const UnorderedList: FunctionComponent<Props> = (props) => {
+const UnorderedList: FunctionComponent<ApmComponentProps> = (props) => {
   let listItems = [];
 
   const process = (content: Node) => {

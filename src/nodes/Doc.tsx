@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import Traverse from '../utils/Traverse';
+import { ApmComponentProps } from '../types';
 
-const Doc: FunctionComponent = (props) => {
+const Doc: FunctionComponent<ApmComponentProps> = (props) => {
   return <>{Traverse(props)}</>;
 };
 

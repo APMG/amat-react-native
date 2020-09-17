@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text } from 'react-native';
+import { ApmComponentProps } from '../types/index';
 
-const ApmImage: FunctionComponent = () => {
+const ApmImage: FunctionComponent<ApmComponentProps> = (props) => {
   return <Text style={styles.todo}>ApmImage</Text>;
 };
 

@@ -1,14 +1,10 @@
 import React, { FunctionComponent } from 'react';
-import { StyleSheet, Text as TextNative } from 'react-native';
+import { Text as TextNative } from 'react-native';
 
-import { TextNode } from '../types/prosemirror';
 import { EscapeSpecialCharacters } from '../utils/utils';
+import { ApmComponentProps } from '../types';
 
-interface Props {
-  nodeData: TextNode;
-}
-
-const Text: FunctionComponent<Props> = ({ nodeData }) => {
+const Text: FunctionComponent<ApmComponentProps> = ({ nodeData }) => {
   const text = EscapeSpecialCharacters(nodeData['text']);
   return <TextNative>{text}</TextNative>;
 };

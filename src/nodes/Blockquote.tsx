@@ -2,8 +2,9 @@ import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 import Traverse from '../utils/Traverse';
+import { ApmComponentProps } from '../types';
 
-const Blockquote: FunctionComponent = (props) => {
+const Blockquote: FunctionComponent<ApmComponentProps> = (props) => {
   return <Text style={styles.blockquote}>{Traverse(props)}</Text>;
 };
 

@@ -1,15 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { Linking, StyleSheet, Text } from 'react-native';
 
-import { Inner } from '../types';
+import { MarkProps } from '../types';
 
-interface Props {
-  inner: Inner;
-  href: string;
-  title: string;
-}
-
-const Link: FunctionComponent<Props> = ({ inner, href }) => {
+const Link: FunctionComponent<MarkProps> = ({ inner, href }) => {
   return (
     <Text
       data-mark="link"

@@ -1,13 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
-import { Inner } from '../types';
+import { MarkProps } from '../types';
 
-interface Props {
-  inner: Inner;
-}
-
-const Strong: FunctionComponent<Props> = ({ inner }) => {
+const Strong: FunctionComponent<MarkProps> = ({ inner }) => {
   return (
     <Text data-mark="strong" style={styles.strong}>
       {inner}

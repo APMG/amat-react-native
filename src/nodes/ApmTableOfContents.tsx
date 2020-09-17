@@ -1,20 +1,16 @@
 import React, { FunctionComponent } from 'react';
 import { Linking, StyleSheet, Text, View } from 'react-native';
 
-import { Node, NodeType } from '../types/prosemirror';
+import { ApmComponentProps } from '../types';
 
 // TODO: Figure out how we want to handle the "hyperlinking" aspect, given
 // that Native navigation works so differently. I have a vague notion of
-// getting each component's position and using a scrollTo function, but I 
+// getting each component's position and using a scrollTo function, but I
 // haven't worked that out yet.
 
-interface Props {
-  nodeData: Node;
-}
-
-const ApmTableOfContents: FunctionComponent<Props> = (props) => {
+const ApmTableOfContents: FunctionComponent<ApmComponentProps> = (props) => {
   console.log('toc props', props);
-  
+
   // TODO: size those TOC entries based on header level
 
   return (
@@ -28,10 +24,10 @@ const ApmTableOfContents: FunctionComponent<Props> = (props) => {
           >
             {`${anchor.linkText}`}
           </Text>
-        )
+        );
       })}
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({

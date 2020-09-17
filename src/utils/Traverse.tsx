@@ -1,7 +1,9 @@
 import Inner from './Inner';
 import Mark from './Mark';
+import { FunctionComponent } from 'react';
+import { ApmComponentProps } from '../types';
 
-const NativeTraverse = (props) => {
+const NativeTraverse: FunctionComponent<ApmComponentProps> = (props) => {
   // Checks if the legacy Table of Contents is anywhere in this nodeData and delivers the old version if so. Not necessary for React Native sites, which shouldn't have any instances of the old TOCs left.
   let content = getContent(props);
 
