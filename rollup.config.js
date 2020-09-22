@@ -12,7 +12,7 @@ export default [
   {
     input: 'src/main.ts',
     external: defaultExternal,
-    output: [{ file: pkg.main, format: 'es' }],
+    output: [{ file: pkg.main, format: 'cjs' }],
     plugins: [
       babel({
         exclude: ['node_modules/**', '*.json']
