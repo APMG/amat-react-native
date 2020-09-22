@@ -1,5 +1,6 @@
 import { ComponentType } from 'react';
 import { Node } from './prosemirror';
+import { EmbeddedImage } from './image';
 export declare enum BodyType {
     Web = 0,
     AMP = 1,
@@ -7,10 +8,10 @@ export declare enum BodyType {
     Minimal = 3
 }
 export interface EmbeddedAssets {
-    audio: object;
-    attachments: object;
-    images: object;
-    oembeds: object;
+    audio: object[];
+    attachments: object[];
+    images: EmbeddedImage[];
+    oembeds: object[];
 }
 export interface Inner {
     key: string | number;

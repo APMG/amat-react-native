@@ -1,5 +1,6 @@
-import { ComponentType, ComponentProps } from 'react';
+import { ComponentType } from 'react';
 import { Node } from './prosemirror';
+import { EmbeddedImage } from './image';
 
 export enum BodyType {
   Web,
@@ -9,10 +10,10 @@ export enum BodyType {
 }
 
 export interface EmbeddedAssets {
-  audio: object;
-  attachments: object;
-  images: object;
-  oembeds: object;
+  audio: object[];
+  attachments: object[];
+  images: EmbeddedImage[];
+  oembeds: object[];
 }
 
 export interface Inner {
