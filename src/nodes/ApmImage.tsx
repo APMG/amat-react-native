@@ -5,7 +5,8 @@ import {
   Image,
   View,
   TouchableOpacity,
-  Linking
+  Linking,
+  Dimensions
 } from 'react-native';
 import { ApmComponentProps } from '../types/index';
 import { ImageAttrs } from '../types/prosemirror';
@@ -27,15 +28,62 @@ const ApmImage: FunctionComponent<ApmComponentProps> = (props) => {
     };
   });
 
+  const dimensions = Dimensions.get('window');
+  const { height, width } = sources[0];
+  const fullImageWidth = dimensions.width;
+  const fullImageHeight = fullImageWidth * (height / width);
+
+  const containerStyles = StyleSheet.create({
+    full: {
+      width: fullImageWidth
+    },
+    half: {
+      width: fullImageWidth * 0.5
+    },
+    quarter: {
+      width: fullImageWidth * 0.25
+    },
+    right: {
+      alignSelf: 'flex-end'
+    },
+    left: {
+      alignSelf: 'flex-start'
+    },
+    none: {
+      alignSelf: 'flex-start'
+    }
+  });
+
+  const imageStyles = StyleSheet.create({
+    full: {
+      flex: 1,
+      width: fullImageWidth,
+      height: fullImageHeight
+    },
+    half: {
+      flex: 1,
+      width: fullImageWidth * 0.5,
+      height: fullImageHeight * 0.5
+    },
+    quarter: {
+      flex: 1,
+      width: fullImageWidth * 0.25,
+      height: fullImageHeight * 0.25
+    }
+  });
+
   return (
-    <View>
+    <View
+      style={[
+        containerStyles[imageAttributes.float || 'none'],
+        containerStyles[imageAttributes.width || 'full']
+      ]}
+    >
       <Image
+        resizeMode="cover"
         source={sources || { uri: embeddedImage.fallback }}
-        style={[
-          styles[imageAttributes.float || 'left'],
-          styles[imageAttributes.width || 'full']
-        ]}
         accessibilityLabel={imageAttributes.short_caption}
+        style={imageStyles[imageAttributes.width]}
       />
       <Caption {...imageAttributes} />
     </View>
@@ -53,42 +101,29 @@ const Caption: FunctionComponent<CaptionProps> = ({
   credit,
   credit_url
 }) => {
+  //@TODO Fix styles ... :(
+  const captionStyles = StyleSheet.create({
+    credit: {},
+    caption: {}
+  });
+
   if (long_caption || credit) {
     return (
-      <View style={styles.caption}>
+      <View style={captionStyles.caption}>
         {long_caption && <Text>{long_caption}</Text>}
         {credit && credit_url && (
           <TouchableOpacity onPress={() => Linking.openURL(credit_url)}>
-            <Text style={styles.credit}>{credit}</Text>
+            <Text style={captionStyles.credit}>{credit}</Text>
           </TouchableOpacity>
         )}
-        {credit && !credit_url && <Text style={styles.credit}>{credit}</Text>}
+        {credit && !credit_url && (
+          <Text style={captionStyles.credit}>{credit}</Text>
+        )}
       </View>
     );
   }
 
   return null;
 };
-
-//@TODO Fix styles ... :(
-const styles = StyleSheet.create({
-  credit: {},
-  caption: {},
-  full: {
-    width: '100%'
-  },
-  half: {
-    width: '60%'
-  },
-  quarter: {
-    width: '40%'
-  },
-  right: {
-    alignContent: 'flex-end'
-  },
-  left: {
-    alignContent: 'flex-start'
-  }
-});
 
 export default ApmImage;
