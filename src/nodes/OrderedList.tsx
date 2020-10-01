@@ -3,12 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Node, NodeType } from '../types/prosemirror';
 import { determineNodeType } from '../utils/utils';
+import { ApmComponentProps } from '../types';
 
-interface Props {
-  nodeData: Node;
-}
-
-const OrderedList: FunctionComponent<Props> = (props) => {
+const OrderedList: FunctionComponent<ApmComponentProps> = (props) => {
   let listItems = [];
 
   const process = (content: Node, index: number) => {
@@ -21,7 +18,9 @@ const OrderedList: FunctionComponent<Props> = (props) => {
           content[i].forEach((node) => {
             node.content.forEach((textNode) => {
               listItems.push(
-                <Text key={Math.random()}>{` ${index}. ${textNode.text}\n`}</Text>
+                <Text
+                  key={Math.random()}
+                >{` ${index}. ${textNode.text}\n`}</Text>
               );
             });
           });

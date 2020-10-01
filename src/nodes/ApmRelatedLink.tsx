@@ -1,17 +1,16 @@
 import React, { FunctionComponent } from 'react';
 import { Linking, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import { Node } from '../types/prosemirror';
+import { ApmComponentProps } from '../types/index';
 
-interface Props {
-  nodeData: Node
-}
-
-const ApmRelatedLink: FunctionComponent<Props> = (props) => {
+const ApmRelatedLink: FunctionComponent<ApmComponentProps> = (props) => {
   const { prefix, title, url } = props.nodeData.attrs;
 
   return (
-    <TouchableOpacity style={styles.relatedLink} onPress={() => Linking.openURL(url)}>
+    <TouchableOpacity
+      style={styles.relatedLink}
+      onPress={() => Linking.openURL(url)}
+    >
       <Text style={styles.strong}>{title}</Text>
       <Text>{prefix}</Text>
     </TouchableOpacity>

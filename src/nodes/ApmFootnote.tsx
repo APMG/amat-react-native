@@ -1,18 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import { Linking, StyleSheet, Text } from 'react-native';
 
-import { Node } from '../types/prosemirror';
-
+import { ApmComponentProps } from '../types/index';
 // TODO: Figure out how we want to handle the "hyperlinking" aspect, given
 // that Native navigation works so differently. I have a vague notion of
-// getting each component's position and using a scrollTo function, but I 
+// getting each component's position and using a scrollTo function, but I
 // haven't worked that out yet.
 
-interface Props {
-  nodeData: Node;
-}
-
-const ApmFootnote: FunctionComponent<Props> = (props) => {
+const ApmFootnote: FunctionComponent<ApmComponentProps> = (props) => {
   const {
     attrs: { number }
   } = props.nodeData;
@@ -25,7 +20,7 @@ const ApmFootnote: FunctionComponent<Props> = (props) => {
     >
       {` ${number}`}
     </Text>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
