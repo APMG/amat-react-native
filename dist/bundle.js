@@ -475,6 +475,9 @@ var ApmImage = function (props) {
         },
         left: {
             alignSelf: 'flex-start'
+        },
+        none: {
+            alignSelf: 'flex-start'
         }
     });
     var imageStyles = reactNative.StyleSheet.create({
@@ -495,10 +498,10 @@ var ApmImage = function (props) {
         }
     });
     return (React__default['default'].createElement(reactNative.View, { style: [
-            containerStyles[imageAttributes.float || 'left'],
+            containerStyles[imageAttributes.float || 'none'],
             containerStyles[imageAttributes.width || 'full']
         ] },
-        React__default['default'].createElement(reactNative.Image, { source: sources || { uri: embeddedImage.fallback }, accessibilityLabel: imageAttributes.short_caption, style: imageStyles[imageAttributes.width] }),
+        React__default['default'].createElement(reactNative.Image, { resizeMode: "cover", source: sources || { uri: embeddedImage.fallback }, accessibilityLabel: imageAttributes.short_caption, style: imageStyles[imageAttributes.width] }),
         React__default['default'].createElement(Caption, __assign({}, imageAttributes))));
 };
 var Caption = function (_a) {
