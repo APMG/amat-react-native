@@ -3,10 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Inner } from '../types';
 import Traverse from '../utils/Traverse';
-
-interface Props {
-  components: Inner;
-}
+import { ApmComponentProps } from '../types/index';
 
 const componentMapper = (defaultComponents) => {
   return {
@@ -15,7 +12,7 @@ const componentMapper = (defaultComponents) => {
   };
 };
 
-const ApmFootnoteList: FunctionComponent<Props> = (props) => {
+const ApmFootnoteList: FunctionComponent<ApmComponentProps> = (props) => {
   const componentMap = componentMapper(props.components);
 
   return (

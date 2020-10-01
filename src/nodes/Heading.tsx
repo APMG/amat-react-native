@@ -1,14 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { Node } from '../types/prosemirror';
+import { ApmComponentProps } from '../types/index';
 
 import Traverse from '../utils/Traverse';
 
-interface Props {
-  nodeData: Node;
-}
-
-const Heading: FunctionComponent<Props> = (props) => {
+const Heading: FunctionComponent<ApmComponentProps> = (props) => {
   const id = findText(props);
   const level = `h${props.nodeData.attrs.level}`;
 

@@ -2,8 +2,9 @@ import React, { FunctionComponent } from 'react';
 import { Platform, StyleSheet, Text } from 'react-native';
 
 import Traverse from '../utils/Traverse';
+import { ApmComponentProps } from '../types';
 
-const ApmVerse: FunctionComponent = (props) => {
+const ApmVerse: FunctionComponent<ApmComponentProps> = (props) => {
   return <Text style={styles.verse}>{Traverse(props)}</Text>;
 };
 

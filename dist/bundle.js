@@ -12,8 +12,6 @@ var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 var Inner = function (child, props) {
     var Dispatcher = props.components[child.type];
     switch (child.type) {
-        case 'apm_image':
-            return (React__default['default'].createElement(Dispatcher, { key: Math.random(), embedded: props.embedded, image: child.attrs, aspectRatio: child.attrs.preferred_aspect_ratio_slug, components: props.components }));
         default:
             return (React__default['default'].createElement(Dispatcher, { key: Math.random(), nodeData: child, embedded: props.embedded, components: props.components }));
     }
@@ -201,6 +199,15 @@ var styles$4 = reactNative.StyleSheet.create({
     }
 });
 
+var AspectRatioSlug;
+(function (AspectRatioSlug) {
+    AspectRatioSlug["normal"] = "normal";
+    AspectRatioSlug["portrait"] = "portrait";
+    AspectRatioSlug["square"] = "square";
+    AspectRatioSlug["thumbnail"] = "thumbnail";
+    AspectRatioSlug["uncropped"] = "uncropped";
+    AspectRatioSlug["widescreen"] = "widescreen";
+})(AspectRatioSlug || (AspectRatioSlug = {}));
 var NodeType = typeof Node;
 
 var UnorderedList = function (props) {
@@ -305,6 +312,10 @@ var styles$9 = reactNative.StyleSheet.create({
     }
 });
 
+// TODO: Figure out how we want to handle the "hyperlinking" aspect, given
+// that Native navigation works so differently. I have a vague notion of
+// getting each component's position and using a scrollTo function, but I
+// haven't worked that out yet.
 var ApmTableOfContents = function (props) {
     console.log('toc props', props);
     // TODO: size those TOC entries based on header level
@@ -494,6 +505,10 @@ var styles$k = reactNative.StyleSheet.create({
     }
 });
 
+// TODO: Figure out how we want to handle the "hyperlinking" aspect, given
+// that Native navigation works so differently. I have a vague notion of
+// getting each component's position and using a scrollTo function, but I
+// haven't worked that out yet.
 var ApmFootnote = function (props) {
     var number = props.nodeData.attrs.number;
     return (React__default['default'].createElement(reactNative.Text, { "data-id": "footnote-link-" + number, style: styles$l.link, onPress: function () { return reactNative.Linking.openURL("#footnote-content-" + number); } }, " " + number));
@@ -504,6 +519,10 @@ var styles$l = reactNative.StyleSheet.create({
     }
 });
 
+// TODO: Figure out how we want to handle the "hyperlinking" aspect, given
+// that Native navigation works so differently. I have a vague notion of
+// getting each component's position and using a scrollTo function, but I
+// haven't worked that out yet.
 var ApmFootnoteListItem = function (props) {
     var nodeData = props.nodeData;
     var number = nodeData.attrs.number;
