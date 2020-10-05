@@ -7,7 +7,7 @@ export interface Doc {
 
 export interface Node {
   type: string;
-  attrs?: Attrs | ImageAttrs;
+  attrs?: Attrs | ImageAttrs | CustomHtmlAttrs;
   content?: Node[]; // woohoo recursion, it's like I'm back in CSCI 1901
   text?: string;
 }
@@ -27,8 +27,13 @@ export interface Attrs {
   url?: string;
 }
 
+export interface CustomHtmlAttrs extends Attrs {
+  html: string;
+  fallback_url: string;
+  fallback_text: string;
+}
+
 export interface ImageAttrs extends Attrs {
-  type: 'apmImage';
   id: string;
   url: string;
   preferred_aspect_ratio_slug: AspectRatioSlug;

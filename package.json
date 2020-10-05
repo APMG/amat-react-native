@@ -28,7 +28,9 @@
   },
   "peerDependencies": {
     "react": "^16.13.0",
-    "react-native": "^0.63.2"
+    "react-native": "^0.63.2",
+    "react-native-render-html": "^4.2.0",
+    "react-native-webview": "9.4.0"
   },
   "devDependencies": {
     "@react-native-community/eslint-config": "^2.0.0",
@@ -48,6 +50,8 @@
     "prettier": "^2.0.5",
     "react": "^16.13.0",
     "react-native": "^0.63.2",
+    "react-native-render-html": "^4.2.0",
+    "react-native-webview": "9.4.0",
     "rollup-plugin-typescript2": "^0.27.2",
     "typescript": "^3.9.7"
   },
