@@ -5,7 +5,7 @@ export interface Doc {
 }
 export interface Node {
     type: string;
-    attrs?: Attrs | ImageAttrs;
+    attrs?: Attrs | ImageAttrs | CustomHtmlAttrs;
     content?: Node[];
     text?: string;
 }
@@ -22,8 +22,12 @@ export interface Attrs {
     title?: string;
     url?: string;
 }
+export interface CustomHtmlAttrs extends Attrs {
+    html: string;
+    fallback_url: string;
+    fallback_text: string;
+}
 export interface ImageAttrs extends Attrs {
-    type: 'apmImage';
     id: string;
     url: string;
     preferred_aspect_ratio_slug: AspectRatioSlug;
