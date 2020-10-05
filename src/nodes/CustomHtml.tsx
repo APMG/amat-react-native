@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { ApmComponentProps } from '../types';
 import { CustomHtmlAttrs } from '../types/prosemirror';
 import HTML from 'react-native-render-html';
@@ -49,13 +49,5 @@ const CustomHtml: FunctionComponent<ApmComponentProps> = (props) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  todo: {
-    fontSize: 18,
-    fontStyle: 'italic',
-    color: 'crimson'
-  }
-});
 
 export default CustomHtml;
