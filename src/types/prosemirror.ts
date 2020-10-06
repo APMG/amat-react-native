@@ -46,6 +46,15 @@ export interface ImageAttrs extends Attrs {
   aspect_ratios: AspectRatios;
 }
 
+export interface VideoAttrs extends Attrs {
+  url: string;
+  credit_url: string;
+  credit_name: string;
+  long_caption: string;
+  fallback_text: string;
+  short_caption: string;
+}
+
 export interface Anchor {
   anchor?: string;
   linkText?: string;

@@ -13,7 +13,21 @@ export interface EmbeddedAssets {
   audio: object[];
   attachments: object[];
   images: EmbeddedImage[];
-  oembeds: object[];
+  oembeds: Oembed[];
+}
+
+export interface Oembed {
+  html: string;
+  url: string;
+  author_name: string;
+  author_url: string;
+  provider_url: string;
+  provider_name: string;
+  height: number | null;
+  width: number | null;
+  thumbnail_height?: number | null;
+  thumbnail_width?: number | null;
+  thumbnail_url?: string | null;
 }
 
 export interface Inner {
