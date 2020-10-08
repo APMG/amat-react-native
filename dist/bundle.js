@@ -469,16 +469,12 @@ var ApmStyleBox = function (props) {
 
 var ApmAttachment = function (props) {
     var attachment = props.embedded.attachments.find(function (attachment) { return attachment.id === props.nodeData.attrs.attachment_id; });
-    return (React__default['default'].createElement(reactNative.TouchableOpacity, { style: styles$e.attachment, onPress: function () { return reactNative.Linking.openURL(attachment.url); } },
-        React__default['default'].createElement(reactNative.Text, { style: styles$e.strong }, props.nodeData.attrs.title)));
+    return (React__default['default'].createElement(reactNative.Text, { onPress: function () { return reactNative.Linking.openURL(attachment.url); }, style: styles$e.strong }, props.nodeData.attrs.title));
 };
 var styles$e = reactNative.StyleSheet.create({
-    attachment: {
-        marginVertical: 5,
-        marginHorizontal: 10
-    },
     strong: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'blue'
     }
 });
 
