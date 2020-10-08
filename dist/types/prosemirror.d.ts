@@ -21,6 +21,7 @@ export interface Attrs {
     prefix?: string;
     title?: string;
     url?: string;
+    attachment_id?: string;
 }
 export interface CustomHtmlAttrs extends Attrs {
     html: string;

@@ -7,22 +7,16 @@ const ApmAttachment: FunctionComponent<ApmComponentProps> = (props) => {
     (attachment) => attachment.id === props.nodeData.attrs.attachment_id
   );
   return (
-    <TouchableOpacity
-      style={styles.attachment}
-      onPress={() => Linking.openURL(attachment.url)}
-    >
-      <Text style={styles.strong}>{props.nodeData.attrs.title}</Text>
-    </TouchableOpacity>
+    <Text onPress={() => Linking.openURL(attachment.url)} style={styles.strong}>
+      {props.nodeData.attrs.title}
+    </Text>
   );
 };
 
 const styles = StyleSheet.create({
-  attachment: {
-    marginVertical: 5,
-    marginHorizontal: 10
-  },
   strong: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: 'blue'
   }
 });
 
