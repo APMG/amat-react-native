@@ -467,14 +467,14 @@ var ApmStyleBox = function (props) {
     return (React__default['default'].createElement(reactNative.Text, { "data-class": "apm-style-box " + custom_class + "-box", "data-custom-class": custom_class }, NativeTraverse(props)));
 };
 
-var ApmAttachment = function () {
-    return React__default['default'].createElement(reactNative.Text, { style: styles$e.todo }, "ApmAttachment");
+var ApmAttachment = function (props) {
+    var attachment = props.embedded.attachments.find(function (attachment) { return attachment.id === props.nodeData.attrs.attachment_id; });
+    return (React__default['default'].createElement(reactNative.Text, { onPress: function () { return reactNative.Linking.openURL(attachment.url); }, style: styles$e.strong }, props.nodeData.attrs.title));
 };
 var styles$e = reactNative.StyleSheet.create({
-    todo: {
-        fontSize: 18,
-        fontStyle: 'italic',
-        color: 'crimson'
+    strong: {
+        fontWeight: 'bold',
+        color: 'blue'
     }
 });
 

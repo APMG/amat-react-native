@@ -9,9 +9,14 @@ export declare enum BodyType {
 }
 export interface EmbeddedAssets {
     audio: object[];
-    attachments: object[];
+    attachments: Attachment[];
     images: EmbeddedImage[];
     oembeds: Oembed[];
+}
+export interface Attachment {
+    id: string;
+    url: string;
+    mime_type: string;
 }
 export interface Oembed {
     html: string;

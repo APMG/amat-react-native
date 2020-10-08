@@ -1,15 +1,22 @@
 import React, { FunctionComponent } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Linking, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { ApmComponentProps } from '../types';
 
-const ApmAttachment: FunctionComponent = () => {
-  return <Text style={styles.todo}>ApmAttachment</Text>;
+const ApmAttachment: FunctionComponent<ApmComponentProps> = (props) => {
+  const attachment = props.embedded.attachments.find(
+    (attachment) => attachment.id === props.nodeData.attrs.attachment_id
+  );
+  return (
+    <Text onPress={() => Linking.openURL(attachment.url)} style={styles.strong}>
+      {props.nodeData.attrs.title}
+    </Text>
+  );
 };
 
 const styles = StyleSheet.create({
-  todo: {
-    fontSize: 18,
-    fontStyle: 'italic',
-    color: 'crimson'
+  strong: {
+    fontWeight: 'bold',
+    color: 'blue'
   }
 });
 
