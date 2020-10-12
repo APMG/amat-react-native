@@ -6,6 +6,7 @@ var React = require('react');
 var reactNative = require('react-native');
 var HTML = require('react-native-render-html');
 var reactNativeWebview = require('react-native-webview');
+var reactNativeImageSliderBox = require('react-native-image-slider-box');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -450,14 +451,21 @@ var styles$c = reactNative.StyleSheet.create({
     }
 });
 
-var ApmGallery = function () {
-    return React__default['default'].createElement(reactNative.Text, { style: styles$d.todo }, "ApmGallery");
+var ApmGallery = function (props) {
+    var embeddedImages = props.nodeData.content.map(function (image) {
+        var _a, _b;
+        var imageAttributes = image.attrs;
+        return (_b = (_a = props.embedded) === null || _a === void 0 ? void 0 : _a.images) === null || _b === void 0 ? void 0 : _b.find(function (embeddedImage) {
+            return embeddedImage.id && embeddedImage.id === imageAttributes.id;
+        });
+    });
+    var images = embeddedImages.map(function (image) { return image.preferred_aspect_ratio.instances[0].url; });
+    return (React__default['default'].createElement(reactNative.View, { style: styles$d.container },
+        React__default['default'].createElement(reactNativeImageSliderBox.SliderBox, { images: images })));
 };
 var styles$d = reactNative.StyleSheet.create({
-    todo: {
-        fontSize: 18,
-        fontStyle: 'italic',
-        color: 'crimson'
+    container: {
+        flex: 1
     }
 });
 
